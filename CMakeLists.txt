@@ -1,3 +1,36 @@
 cmake_minimum_required(VERSION 3.0...${CMAKE_VERSION} FATAL_ERROR)
 
-project(Khaos LANGUAGES NONE)
+if("${CMAKE_VERSION}" VERSION_LESS "3.9")
+    project(Khaos VERSION "0.0.0.0" LANGUAGES NONE)
+elseif("${CMAKE_VERSION}" VERSION_LESS "3.12")
+    project(Khaos VERSION "0.0.0.0" DESCRIPTION "A C/C++ library to simplify cross-platform programming" LANGUAGES NONE)
+else()
+    project(Khaos VERSION "0.0.0.0" DESCRIPTION "A C/C++ library to simplify cross-platform programming" HOMEPAGE_URL "https://github.com/flagarde/Khaos" LANGUAGES NONE)
+endif()
+
+include(CMakeDependentOption)
+if(CMAKE_VERSION VERSION_LESS 3.21)
+  get_property(Khaos_IS_TOP_LEVEL DIRECTORY PROPERTY PARENT_DIRECTORY)
+  if(Khaos_IS_TOP_LEVEL)
+    set(Khaos_IS_TOP_LEVEL FALSE)
+  else()
+    set(Khaos_IS_TOP_LEVEL TRUE)
+  endif()
+endif()
+cmake_dependent_option(KHAOS_ENABLE_TESTS "<help_text>" ON "Khaos_IS_TOP_LEVEL" OFF)
+cmake_dependent_option(KHAOS_ENABLE_EXAMPLES "<help_text>" ON "Khaos_IS_TOP_LEVEL" OFF)
+cmake_dependent_option(KHAOS_ENABLE_DOCS "<help_text>" ON "Khaos_IS_TOP_LEVEL" OFF)
+
+add_subdirectory(src)
+
+if(KHAOS_ENABLE_TESTS)
+  add_subdirectory(tests)
+endif()
+
+if(KHAOS_ENABLE_EXAMPLES)
+  add_subdirectory(examples)
+endif()
+
+if(KHAOS_ENABLE_DOCS)
+  add_subdirectory(docs)
+endif()
