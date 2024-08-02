@@ -17,9 +17,9 @@ if(CMAKE_VERSION VERSION_LESS 3.21)
     set(Khaos_IS_TOP_LEVEL TRUE)
   endif()
 endif()
-cmake_dependent_option(KHAOS_ENABLE_TESTS "<help_text>" ON "Khaos_IS_TOP_LEVEL" OFF)
-cmake_dependent_option(KHAOS_ENABLE_EXAMPLES "<help_text>" ON "Khaos_IS_TOP_LEVEL" OFF)
-cmake_dependent_option(KHAOS_ENABLE_DOCS "<help_text>" ON "Khaos_IS_TOP_LEVEL" OFF)
+cmake_dependent_option(KHAOS_ENABLE_TESTS "Build the tests" ON "Khaos_IS_TOP_LEVEL" OFF)
+cmake_dependent_option(KHAOS_ENABLE_EXAMPLES "Build the examples" ON "Khaos_IS_TOP_LEVEL" OFF)
+cmake_dependent_option(KHAOS_ENABLE_DOCS "Build the documentations" ON "Khaos_IS_TOP_LEVEL" OFF)
 
 add_subdirectory(src)
 
