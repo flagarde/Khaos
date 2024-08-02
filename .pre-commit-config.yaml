@@ -15,4 +15,15 @@ default_install_hook_types:
 
 fail_fast: false
 
-repos: []
+repos:
+
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.41.0
+    hooks:
+    - id: markdownlint
+      args: [--config=.markdownlint.yml, scan]
+
+  - repo: https://github.com/editorconfig-checker/editorconfig-checker.python
+    rev: 2.7.3
+    hooks:
+    - id: editorconfig-checker
