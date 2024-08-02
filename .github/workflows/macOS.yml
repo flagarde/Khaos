@@ -12,7 +12,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  CURL_SSL_BACKEND:SecureTransport
+  CURL_SSL_BACKEND: SecureTransport
 
 jobs:
   run:
