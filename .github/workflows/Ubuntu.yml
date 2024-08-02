@@ -12,8 +12,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  gcc:
+  run:
     runs-on: ubuntu-latest
+    name: 'run with CMake 3.${{ matrix.cmake_version }}'
     strategy:
       fail-fast: false
       matrix:
