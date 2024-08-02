@@ -8,6 +8,11 @@ else()
     project(Khaos VERSION "0.0.0.0" DESCRIPTION "A C/C++ library to simplify cross-platform programming" HOMEPAGE_URL "https://github.com/flagarde/Khaos" LANGUAGES NONE)
 endif()
 
+file(DOWNLOAD "https://cmake-tools.github.io/cmmm/latest/GetCMakeMM.cmake" "${CMAKE_CURRENT_BINARY_DIR}/GetCMakeMM.cmake")
+include("${CMAKE_CURRENT_BINARY_DIR}/GetCMakeMM.cmake")
+cmmm(VERSION latest)
+cmmm_modules_list(URL "gh:cmake-tools/cmmm.test" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/modulesList2")
+
 include(CMakeDependentOption)
 if(CMAKE_VERSION VERSION_LESS 3.21)
   get_property(Khaos_IS_TOP_LEVEL DIRECTORY PROPERTY PARENT_DIRECTORY)
