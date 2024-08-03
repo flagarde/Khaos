@@ -31,10 +31,6 @@ jobs:
         cmakeVersion: ~3.${{ matrix.cmake_version }}
         ninjaVersion: ^1
 
-    - name: Install libidn11
-      run: sudo apt-get update ; sudo apt-get install --no-install-recommends -y libidn12; sudo ln -s  /usr/lib/x86_64-linux-gnu/libidn.so.12 /usr/lib/x86_64-linux-gnu/libidn.so.11
-      if: ${{ matrix.cmake_version <=5 }}
-
     - name: Update
       run: mkdir -p ~/.ssh ; touch  ~/.ssh/known_hosts; ssh-keygen -R github.com ; curl -L https://api.github.com/meta | jq -r '.ssh_keys | .[]' | sed -e 's/^/github.com /' >> ~/.ssh/known_hosts
 
