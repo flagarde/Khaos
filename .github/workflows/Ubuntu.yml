@@ -1,0 +1,156 @@
+---
+name: Ubuntu
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: '${{ github.workflow }}@${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
+  cancel-in-progress: true
+
+jobs:
+  gcc:
+    runs-on: ubuntu-latest
+    name: gcc${{ matrix.version }} (${{ matrix.build_type }})
+    container: flagarde/ci-ubuntu-gcc-${{ matrix.version }}-x86_64:latest
+    strategy:
+      fail-fast: false
+      matrix:
+        version: [ 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 6, 7, 8, 9 ]
+        build_type: [ Debug, Release, RelWithDebInfo, MinSizeRel, '' ]
+    steps:
+      - uses: ammaraskar/gcc-problem-matcher@master
+
+      - name: ⬇️ Install git
+        run: apt-get update ; apt-get install --no-install-recommends -y git unzip
+
+      - name: ⬇️ Setup CMake
+        uses: lukka/get-cmake@latest
+        with:
+          cmakeVersion: ^3
+          ninjaVersion: ^1.11.1
+
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: ⚙️ run-cmake (configure)
+        uses: cmake-tools/run-cmake@v0-alpha
+        id: 'configure'
+        with:
+          mode: configure
+          generator: 'Ninja'
+          install_prefix: '../install'
+          binary_dir: '../build'
+          variables: |
+            CMAKE_BUILD_TYPE:STRING=${{ matrix.build_type }}
+
+  gcc-10:
+    runs-on: ubuntu-latest
+    name: gcc${{ matrix.version }} (${{ matrix.build_type }})
+    container: flagarde/ci-ubuntu-gcc-${{ matrix.version }}-x86_64:latest
+    strategy:
+      fail-fast: false
+      matrix:
+        version: [ 10, 11, 12, 13 ]
+        build_type: [ Debug, Release, RelWithDebInfo, MinSizeRel, '' ]
+
+    steps:
+      - uses: ammaraskar/gcc-problem-matcher@master
+
+      - name: ⬇️ Install git
+        run: apt-get update ; apt-get install --no-install-recommends -y git unzip
+
+      - name: ⬇️ Setup CMake
+        uses: lukka/get-cmake@latest
+        with:
+          cmakeVersion: ^3
+          ninjaVersion: ^1.11.1
+
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: ⚙️ run-cmake (configure)
+        uses: cmake-tools/run-cmake@v0-alpha
+        id: 'configure'
+        with:
+          mode: configure
+          generator: 'Ninja'
+          install_prefix: '../install'
+          binary_dir: '../build'
+          variables: |
+            CMAKE_BUILD_TYPE:STRING=${{ matrix.build_type }}
+
+  clang:
+    runs-on: ubuntu-latest
+    name: clang${{ matrix.version }} (${{ matrix.build_type }})
+    container: flagarde/ci-ubuntu-clang-${{ matrix.version }}-x86_64:latest
+    strategy:
+      fail-fast: false
+      matrix:
+        version: [ 3.5, 3.6, 3.7, 3.8, 3.9, 4, 5, 6, 7, 8, 9]
+        build_type: [ Debug, Release, RelWithDebInfo, MinSizeRel, '' ]
+
+    steps:
+      - uses: ammaraskar/gcc-problem-matcher@master
+
+      - name: ⬇️ Install git
+        run: apt-get update ; apt-get install --no-install-recommends -y git unzip
+
+      - name: ⬇️ Setup CMake
+        uses: lukka/get-cmake@latest
+        with:
+          cmakeVersion: ^3
+          ninjaVersion: ^1.11.1
+
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: ⚙️ run-cmake (configure)
+        uses: cmake-tools/run-cmake@v0-alpha
+        id: 'configure'
+        with:
+          mode: configure
+          generator: 'Ninja'
+          install_prefix: '../install'
+          binary_dir: '../build'
+          variables: |
+            CMAKE_BUILD_TYPE:STRING=${{ matrix.build_type }}
+
+  clang-10:
+    runs-on: ubuntu-latest
+    name: clang${{ matrix.version }} (${{ matrix.build_type }})
+    container: flagarde/ci-ubuntu-clang-${{ matrix.version }}-x86_64:latest
+    strategy:
+      fail-fast: false
+      matrix:
+        version: [ 10, 11, 12, 13, 14, 15, 16, 17, 18 ]
+        build_type: [ Debug, Release, RelWithDebInfo, MinSizeRel, '' ]
+
+    steps:
+      - uses: ammaraskar/gcc-problem-matcher@master
+
+      - name: ⬇️ Install git
+        run: apt-get update ; apt-get install --no-install-recommends -y git unzip
+
+      - name: ⬇️ Setup CMake
+        uses: lukka/get-cmake@latest
+        with:
+          cmakeVersion: ^3
+          ninjaVersion: ^1.11.1
+
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: ⚙️ run-cmake (configure)
+        uses: cmake-tools/run-cmake@v0-alpha
+        id: 'configure'
+        with:
+          mode: configure
+          generator: 'Ninja'
+          install_prefix: '../install'
+          binary_dir: '../build'
+          variables: |
+            CMAKE_BUILD_TYPE:STRING=${{ matrix.build_type }}
