@@ -25,7 +25,7 @@ jobs:
       - uses: ammaraskar/gcc-problem-matcher@master
 
       - name: ⬇️ Install git
-        run: apt-get update ; apt-get install --no-install-recommends -y git unzip
+        run: apt-get update ; apt-get install --no-install-recommends -y git unzip sudo
 
       - name: ⬇️ Setup CMake
         uses: lukka/get-cmake@latest
@@ -61,7 +61,7 @@ jobs:
       - uses: ammaraskar/gcc-problem-matcher@master
 
       - name: ⬇️ Install git
-        run: apt-get update ; apt-get install --no-install-recommends -y git unzip
+        run: apt-get update ; apt-get install --no-install-recommends -y git unzip sudo
 
       - name: ⬇️ Setup CMake
         uses: lukka/get-cmake@latest
@@ -97,7 +97,7 @@ jobs:
       - uses: ammaraskar/gcc-problem-matcher@master
 
       - name: ⬇️ Install git
-        run: apt-get update ; apt-get install --no-install-recommends -y git unzip
+        run: apt-get update ; apt-get install --no-install-recommends -y git unzip sudo
 
       - name: ⬇️ Setup CMake
         uses: lukka/get-cmake@latest
@@ -133,7 +133,7 @@ jobs:
       - uses: ammaraskar/gcc-problem-matcher@master
 
       - name: ⬇️ Install git
-        run: apt-get update ; apt-get install --no-install-recommends -y git unzip
+        run: apt-get update ; apt-get install --no-install-recommends -y git unzip sudo
 
       - name: ⬇️ Setup CMake
         uses: lukka/get-cmake@latest
