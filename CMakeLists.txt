@@ -26,7 +26,6 @@ else()
 endif()
 
 cmmm(VERSION latest)
-cmmm_modules_list(URL "gh:cmake-tools/cmmm.test" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/modulesList2")
 
 include(CMakeDependentOption)
 if(CMAKE_VERSION VERSION_LESS 3.21)
