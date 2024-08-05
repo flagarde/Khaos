@@ -31,9 +31,6 @@ jobs:
         cmakeVersion: ~3.${{ matrix.cmake_version }}
         ninjaVersion: ^1
 
-    - name: Update
-      run: mkdir -p ~/.ssh ; touch  ~/.ssh/known_hosts; ssh-keygen -R github.com ; curl -L https://api.github.com/meta | jq -r '.ssh_keys | .[]' | sed -e 's/^/github.com /' >> ~/.ssh/known_hosts
-
     - name: ⚙️ run-cmake (configure)
       uses: cmake-tools/run-cmake@v0-alpha
       id: 'configure'
@@ -57,9 +54,6 @@ jobs:
 
     - name: Checkout
       uses: actions/checkout@v4
-
-    - name: Update
-      run: curl -L https://api.github.com/meta | jq -r '.ssh_keys | .[]' | sed -e 's/^/github.com /' >> ~/.ssh/known_hosts
 
     - name: ⬇️ Setup CMake
       uses: lukka/get-cmake@latest
