@@ -1,0 +1,6 @@
+[codespell]
+builtin = clear,rare,informal,usage,code,names,en-GB_to_en-US
+ignore-words = .codespellignore
+check-filenames =
+check-hidden =
+skip = .gitattributes,.gitignore,*/.git
