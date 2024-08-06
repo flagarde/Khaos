@@ -51,7 +51,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: [ 10, 11, 12, 13 ]
+        version: [ 10, 11, 12, 13, 14 ]
 
     steps:
       - uses: ammaraskar/gcc-problem-matcher@0.3.0
