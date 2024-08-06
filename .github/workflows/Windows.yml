@@ -20,11 +20,13 @@
   jobs:
     msvc-2019:
       runs-on: windows-2019
-      name: msvc-2019 ${{ matrix.platform }}
+      name: msvc-2019 ${{ matrix.platform }} ${{ matrix.sdk }}
       strategy:
         fail-fast: false
         matrix:
           platform: [ win32, x64, ARM, ARM64]
+          sdk: [ '10.0.14393.0', '10.0.16299.0', '10.0.17134.0', '10.0.17763.0', '10.0.18362.0', '10.0.19041.0', '10.0.20348.0', '10.0.22000.0', '10.0.22621.0']
+          toolset: []
 
       steps:
         - uses: ammaraskar/msvc-problem-matcher@0.3.0
@@ -49,15 +51,16 @@
             generator: 'Visual Studio 16 2019'
             install_prefix: '../install'
             binary_dir: '../build'
-            platform: ${{ matrix.platform }}
+            platform: ${{ matrix.platform }},version=${{ matrix.sdk }}
 
     msvc-2022:
       runs-on: windows-2022
-      name: msvc2022 ${{ matrix.platform }}
+      name: msvc2022 ${{ matrix.platform }} ${{ matrix.sdk }}
       strategy:
         fail-fast: false
         matrix:
           platform: [ win32, x64, ARM, ARM64]
+          sdk: ['10.0.17763.0','10.0.19041.0','10.0.20348.0','10.0.22000.0','10.0.22621.0']
 
       steps:
         - uses: ammaraskar/msvc-problem-matcher@0.3.0
@@ -82,4 +85,4 @@
             generator: 'Visual Studio 17 2022'
             install_prefix: '../install'
             binary_dir: '../build'
-            platform: ${{ matrix.platform }}
+            platform: ${{ matrix.platform }},version=${{ matrix.sdk }}
