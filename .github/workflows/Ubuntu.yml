@@ -2,17 +2,16 @@
 name: Ubuntu
 
 on:
-  on:
-    push:
-      branches: [main]
-      paths-ignore:
-        - '.github/workflows/**'
-        - '!.github/workflows/Ubuntu.yml'
-    pull_request:
-      paths-ignore:
-        - '.github/workflows/**'
-        - '!.github/workflows/Ubuntu.yml'
-    workflow_dispatch:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '.github/workflows/**'
+      - '!.github/workflows/Ubuntu.yml'
+  pull_request:
+    paths-ignore:
+      - '.github/workflows/**'
+      - '!.github/workflows/Ubuntu.yml'
+  workflow_dispatch:
 
 concurrency:
   group: '${{ github.workflow }}@${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
