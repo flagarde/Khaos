@@ -264,5 +264,5 @@ jobs:
           install_prefix: '../install'
           binary_dir: '../build'
           variables: |
-            CMAKE_C_COMPILER:STRING=$(brew --prefix llvm@15)/bin/clang
-            CMAKE_CXX_COMPILER:STRING=$(brew --prefix llvm@15)/bin/clang++
+            CMAKE_C_COMPILER:STRING=$(brew --prefix llvm@${{ matrix.version }})/bin/clang
+            CMAKE_CXX_COMPILER:STRING=$(brew --prefix llvm@${{ matrix.version }})/bin/clang++
