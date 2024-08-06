@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.0...${CMAKE_VERSION} FATAL_ERROR)
 
 if("${CMAKE_VERSION}" VERSION_LESS "3.9")
-  project(Khaos VERSION "0.0.0.0" LANGUAGES NONE)
+  project(Khaos VERSION "0.0.0.0" LANGUAGES C CXX)
 elseif("${CMAKE_VERSION}" VERSION_LESS "3.12")
-  project(Khaos VERSION "0.0.0.0" DESCRIPTION "A C/C++ library to simplify cross-platform programming" LANGUAGES NONE)
+  project(Khaos VERSION "0.0.0.0" DESCRIPTION "A C/C++ library to simplify cross-platform programming" LANGUAGES C CXX)
 else()
-  project(Khaos VERSION "0.0.0.0" DESCRIPTION "A C/C++ library to simplify cross-platform programming" HOMEPAGE_URL "https://github.com/flagarde/Khaos" LANGUAGES NONE)
+  project(Khaos VERSION "0.0.0.0" DESCRIPTION "A C/C++ library to simplify cross-platform programming" HOMEPAGE_URL "https://github.com/flagarde/Khaos" LANGUAGES C CXX)
 endif()
 
 include(CMakeDependentOption)
