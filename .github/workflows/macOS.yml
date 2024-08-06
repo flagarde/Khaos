@@ -250,7 +250,8 @@ jobs:
       - uses: ammaraskar/gcc-problem-matcher@0.3.0
 
       - name : 🚀 Install clang v${{ matrix.version }}
-        run: brew install llvm@${{ matrix.version }}
+        run: brew install llvm@${{ matrix.version }} ; echo "CC=$(brew --prefix llvm@${{ matrix.version }})/bin/clang" >> $GITHUB_ENV ; echo "CXX=$(brew --prefix llvm@${{ matrix.version }})/bin/clang++" >> $GITHUB_ENV
+
 
       - name: 📥 Checkout
         uses: actions/checkout@v4
@@ -264,9 +265,6 @@ jobs:
       - name: ⚙️ run-cmake (configure)
         uses: cmake-tools/run-cmake@v0-alpha
         id: 'configure'
-        env:
-          CC: $(brew --prefix llvm@${{ matrix.version }})/bin/clang
-          CXX: $(brew --prefix llvm@${{ matrix.version }})/bin/clang++
         with:
           mode: configure
           generator: 'Ninja Multi-Config'
