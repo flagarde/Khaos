@@ -244,7 +244,7 @@ jobs:
       - uses: ammaraskar/gcc-problem-matcher@0.3.0
 
       - name : 🚀 Install clang v${{ matrix.version }}
-        run: brew install llvm@${{ matrix.version }} ; export PATH="/opt/homebrew/opt/llvm@${{ matrix.version }}/bin:$PATH" ; export LDFLAGS="-L/opt/homebrew/opt/llvm@${{ matrix.version }}/lib"; export CPPFLAGS="-I/opt/homebrew/opt/llvm@${{ matrix.version }}/include"
+        run: brew install llvm@${{ matrix.version }}
 
       - name: 📥 Checkout
         uses: actions/checkout@v4
@@ -264,5 +264,5 @@ jobs:
           install_prefix: '../install'
           binary_dir: '../build'
           variables: |
-            CMAKE_C_COMPILER:STRING=/opt/homebrew/opt/llvm@12/bin/clang
-            CMAKE_CXX_COMPILER:STRING=/opt/homebrew/opt/llvm@12/bin/clang++
+            CMAKE_C_COMPILER:STRING=$(brew --prefix llvm@15)/bin/clang
+            CMAKE_CXX_COMPILER:STRING=$(brew --prefix llvm@15)/bin/clang++
