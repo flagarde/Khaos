@@ -42,7 +42,16 @@ jobs:
         uses: lukka/get-cmake@latest
         with:
           cmakeVersion: ^3
-          ninjaVersion: ^1.11.1
+          ninjaVersion: ^1
+
+      - name: ⚙️ run-cmake (configure)
+        uses: cmake-tools/run-cmake@v0-alpha
+        id: 'configure'
+        with:
+          mode: configure
+          generator: 'Xcode'
+          install_prefix: '../install'
+          binary_dir: '../build'
 
   macos-13:
     name: macos-13 xcode-${{ matrix.xcode }}
@@ -75,6 +84,15 @@ jobs:
           cmakeVersion: ^3
           ninjaVersion: ^1
 
+      - name: ⚙️ run-cmake (configure)
+        uses: cmake-tools/run-cmake@v0-alpha
+        id: 'configure'
+        with:
+          mode: configure
+          generator: 'Xcode'
+          install_prefix: '../install'
+          binary_dir: '../build'
+
   macos-14:
     name: macos-14 xcode-${{ matrix.xcode }}
     runs-on: macos-14
@@ -106,6 +124,15 @@ jobs:
           cmakeVersion: ^3
           ninjaVersion: ^1
 
+      - name: ⚙️ run-cmake (configure)
+        uses: cmake-tools/run-cmake@v0-alpha
+        id: 'configure'
+        with:
+          mode: configure
+          generator: 'Xcode'
+          install_prefix: '../install'
+          binary_dir: '../build'
+
   gcc:
     runs-on: macos-12
     name: macos-12 gcc-${{ matrix.version }}
@@ -125,3 +152,15 @@ jobs:
         with:
           cmakeVersion: ^3
           ninjaVersion: ^1
+
+      - name: ⚙️ run-cmake (configure)
+        uses: cmake-tools/run-cmake@v0-alpha
+        id: 'configure'
+        with:
+          mode: configure
+          generator: 'Ninja Multi-Config'
+          install_prefix: '../install'
+          binary_dir: '../build'
+          variables: |
+            CMAKE_C_COMPILER:STRING=gcc-${{ matrix.version }}
+            CMAKE_CXX_COMPILER:STRING=g++-${{ matrix.version }}
