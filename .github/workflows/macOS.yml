@@ -133,13 +133,13 @@ jobs:
           install_prefix: '../install'
           binary_dir: '../build'
 
-  gcc:
+  macos-12-gcc:
     runs-on: macos-12
     name: macos-12 gcc-${{ matrix.version }}
     strategy:
       fail-fast: false
       matrix:
-        version: [ 11, 12, 14 ]
+        version: [ 12, 13, 14 ]
 
     steps:
       - uses: ammaraskar/gcc-problem-matcher@0.3.0
@@ -164,3 +164,105 @@ jobs:
           variables: |
             CMAKE_C_COMPILER:STRING=gcc-${{ matrix.version }}
             CMAKE_CXX_COMPILER:STRING=g++-${{ matrix.version }}
+
+  macos-13-gcc:
+    runs-on: macos-13
+    name: macos-13 gcc-${{ matrix.version }}
+    strategy:
+      fail-fast: false
+      matrix:
+        version: [ 12, 13, 14 ]
+
+    steps:
+      - uses: ammaraskar/gcc-problem-matcher@0.3.0
+
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: ⬇️ Setup CMake
+        uses: lukka/get-cmake@latest
+        with:
+          cmakeVersion: ^3
+          ninjaVersion: ^1
+
+      - name: ⚙️ run-cmake (configure)
+        uses: cmake-tools/run-cmake@v0-alpha
+        id: 'configure'
+        with:
+          mode: configure
+          generator: 'Ninja Multi-Config'
+          install_prefix: '../install'
+          binary_dir: '../build'
+          variables: |
+            CMAKE_C_COMPILER:STRING=gcc-${{ matrix.version }}
+            CMAKE_CXX_COMPILER:STRING=g++-${{ matrix.version }}
+
+  gcc:
+    runs-on: macos-latest
+    name: gcc-${{ matrix.version }}
+    strategy:
+      fail-fast: false
+      matrix:
+        version: [ 9, 10, 11, 12, 13, 14 ]
+
+    steps:
+      - uses: ammaraskar/gcc-problem-matcher@0.3.0
+
+      - name : Install gcc v${{ matrix.version }}
+        run: brew install gcc@${{ matrix.version }}
+
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: ⬇️ Setup CMake
+        uses: lukka/get-cmake@latest
+        with:
+          cmakeVersion: ^3
+          ninjaVersion: ^1
+
+      - name: ⚙️ run-cmake (configure)
+        uses: cmake-tools/run-cmake@v0-alpha
+        id: 'configure'
+        with:
+          mode: configure
+          generator: 'Ninja Multi-Config'
+          install_prefix: '../install'
+          binary_dir: '../build'
+          variables: |
+            CMAKE_C_COMPILER:STRING=gcc-${{ matrix.version }}
+            CMAKE_CXX_COMPILER:STRING=g++-${{ matrix.version }}
+
+  clang:
+    runs-on: macos-latest
+    name: clang-${{ matrix.version }}
+    strategy:
+      fail-fast: false
+      matrix:
+        version: [ 12, 13, 14, 15, 16, 17, 18 ]
+
+    steps:
+      - uses: ammaraskar/gcc-problem-matcher@0.3.0
+
+      - name : Install clang v${{ matrix.version }}
+        run: brew install llvm@${{ matrix.version }}
+
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: ⬇️ Setup CMake
+        uses: lukka/get-cmake@latest
+        with:
+          cmakeVersion: ^3
+          ninjaVersion: ^1
+
+      - name: ⚙️ run-cmake (configure)
+        uses: cmake-tools/run-cmake@v0-alpha
+        id: 'configure'
+        with:
+          mode: configure
+          generator: 'Ninja Multi-Config'
+          install_prefix: '../install'
+          binary_dir: '../build'
+          variables: |
+            CMAKE_C_COMPILER:STRING=clang-${{ matrix.version }}
+            CMAKE_CXX_COMPILER:STRING=clang++-${{ matrix.version }}
