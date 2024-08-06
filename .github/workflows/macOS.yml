@@ -203,13 +203,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: [ 9, 10, 11, 12, 13, 14 ]
+        version: [ 11, 12, 13, 14 ]
 
     steps:
       - uses: ammaraskar/gcc-problem-matcher@0.3.0
 
       - name : Install gcc v${{ matrix.version }}
-        run: arch -x86_64 brew install gcc@${{ matrix.version }}
+        run: brew install gcc@${{ matrix.version }}
 
       - name: 📥 Checkout
         uses: actions/checkout@v4
@@ -244,7 +244,7 @@ jobs:
       - uses: ammaraskar/gcc-problem-matcher@0.3.0
 
       - name : Install clang v${{ matrix.version }}
-        run: arch -x86_64 brew install llvm@${{ matrix.version }}
+        run: brew install llvm@${{ matrix.version }}
 
       - name: 📥 Checkout
         uses: actions/checkout@v4
