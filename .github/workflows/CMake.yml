@@ -4,7 +4,13 @@ name: CMake
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - '.github/workflows/**'
+      - '!.github/workflows/CMake.yml'
   pull_request:
+    paths-ignore:
+      - '.github/workflows/**'
+      - '!.github/workflows/CMake.yml'
   workflow_dispatch:
 
 concurrency:
