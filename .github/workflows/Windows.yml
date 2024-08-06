@@ -1,0 +1,85 @@
+---
+  name: Windows
+
+  on:
+    push:
+      branches: [main]
+      paths-ignore:
+        - '.github/workflows/**'
+        - '!.github/workflows/Windows.yml'
+    pull_request:
+      paths-ignore:
+        - '.github/workflows/**'
+        - '!.github/workflows/Windows.yml'
+    workflow_dispatch:
+
+  concurrency:
+    group: '${{ github.workflow }}@${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
+    cancel-in-progress: true
+
+  jobs:
+    msvc-2019:
+      runs-on: windows-2019
+      name: msvc-2019 ${{ matrix.platform }}
+      strategy:
+        fail-fast: false
+        matrix:
+          platform: [ win32, x64, ARM, ARM64]
+
+      steps:
+        - uses: ammaraskar/msvc-problem-matcher@0.3.0
+
+        - name: 📥 Checkout
+          uses: actions/checkout@v4
+
+        - name: ⬇️ Setup CMake
+          uses: lukka/get-cmake@latest
+          with:
+            cmakeVersion: ^3
+            ninjaVersion: ^1
+
+        - name: ⬇️ Setup MSVC
+          uses: ilammy/msvc-dev-cmd@v1.13.0
+
+        - name: ⚙️ run-cmake (configure)
+          uses: cmake-tools/run-cmake@v0-alpha
+          id: 'configure'
+          with:
+            mode: configure
+            generator: 'Visual Studio 16 2019'
+            install_prefix: '../install'
+            binary_dir: '../build'
+            platform: ${{ matrix.platform }}
+
+    msvc-2022:
+      runs-on: windows-2022
+      name: msvc2022 ${{ matrix.platform }}
+      strategy:
+        fail-fast: false
+        matrix:
+          platform: [ win32, x64, ARM, ARM64]
+
+      steps:
+        - uses: ammaraskar/msvc-problem-matcher@0.3.0
+
+        - name: 📥 Checkout
+          uses: actions/checkout@v4
+
+        - name: ⬇️ Setup CMake
+          uses: lukka/get-cmake@latest
+          with:
+            cmakeVersion: ^3
+            ninjaVersion: ^1
+
+        - name: ⬇️ Setup MSVC
+          uses: ilammy/msvc-dev-cmd@v1.13.0
+
+        - name: ⚙️ run-cmake (configure)
+          uses: cmake-tools/run-cmake@v0-alpha
+          id: 'configure'
+          with:
+            mode: configure
+            generator: 'Visual Studio 16 2019'
+            install_prefix: '../install'
+            binary_dir: '../build'
+            platform: ${{ matrix.platform }}
