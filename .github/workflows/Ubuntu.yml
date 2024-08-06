@@ -31,7 +31,7 @@ jobs:
         uses: lukka/get-cmake@latest
         with:
           cmakeVersion: ^3
-          ninjaVersion: ^1.11.1
+          ninjaVersion: ^1
 
       - name: 📥 Checkout
         uses: actions/checkout@v4
@@ -67,7 +67,7 @@ jobs:
         uses: lukka/get-cmake@latest
         with:
           cmakeVersion: ^3
-          ninjaVersion: ^1.11.1
+          ninjaVersion: ^1
 
       - name: 📥 Checkout
         uses: actions/checkout@v4
@@ -103,7 +103,7 @@ jobs:
         uses: lukka/get-cmake@latest
         with:
           cmakeVersion: ^3
-          ninjaVersion: ^1.11.1
+          ninjaVersion: ^1
 
       - name: 📥 Checkout
         uses: actions/checkout@v4
@@ -139,7 +139,7 @@ jobs:
         uses: lukka/get-cmake@latest
         with:
           cmakeVersion: ^3
-          ninjaVersion: ^1.11.1
+          ninjaVersion: ^1
 
       - name: 📥 Checkout
         uses: actions/checkout@v4
