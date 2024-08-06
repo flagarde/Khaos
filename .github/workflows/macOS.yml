@@ -18,9 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        xcode: [ '13.1', '13.2.1', '13.3.1', '13.4.1' ]
-    env:
-      DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
+        xcode: [ '13.1', '13.2.1', '13.3.1', '13.4.1', '14.0.1', '14.1', '14.2']
 
     steps:
 
@@ -31,6 +29,11 @@ jobs:
 
       - name: List installed Xcode versions
         run: xcodes installed
+
+      - name: Setup XCode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: ${{ matrix.xcode }}
 
       - name: 📥 Checkout
         uses: actions/checkout@v4
@@ -48,8 +51,6 @@ jobs:
       fail-fast: false
       matrix:
         xcode: [ '14.1', '14.2', '14.3.1', '15.0.1', '15.1', '15.2' ]
-    env:
-      DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
 
     steps:
       - uses: ammaraskar/gcc-problem-matcher@0.3.0
@@ -59,6 +60,11 @@ jobs:
 
       - name: List installed Xcode versions
         run: xcodes installed
+
+      - name: Setup XCode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: ${{ matrix.xcode }}
 
       - name: 📥 Checkout
         uses: actions/checkout@v4
@@ -75,9 +81,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        xcode: [ '14.3.1', '15.0.1', '15.1', '15.2', '15.3', '15.4', '16.0' ]
-    env:
-      DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
+        xcode: [ '14.3.1', '15.0.1', '15.1', '15.2', '15.3', '15.4', '16.0-beta' ]
 
     steps:
       - uses: ammaraskar/gcc-problem-matcher@0.3.0
@@ -87,6 +91,11 @@ jobs:
 
       - name: List installed Xcode versions
         run: xcodes installed
+
+      - name: Setup XCode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: ${{ matrix.xcode }}
 
       - name: 📥 Checkout
         uses: actions/checkout@v4
