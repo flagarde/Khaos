@@ -264,5 +264,5 @@ jobs:
           install_prefix: '../install'
           binary_dir: '../build'
           variables: |
-            CMAKE_C_COMPILER:STRING=clang-${{ matrix.version }}
-            CMAKE_CXX_COMPILER:STRING=clang++-${{ matrix.version }}
+            CMAKE_C_COMPILER:STRING=/opt/homebrew/opt/llvm@12/bin/clang-${{ matrix.version }}
+            CMAKE_CXX_COMPILER:STRING=/opt/homebrew/opt/llvm@12/bin/clang++-${{ matrix.version }}
