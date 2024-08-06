@@ -203,9 +203,9 @@ jobs:
             CMAKE_C_COMPILER:STRING=gcc-${{ matrix.version }}
             CMAKE_CXX_COMPILER:STRING=g++-${{ matrix.version }}
 
-  gcc:
+  macos-14-gcc:
     runs-on: macos-latest
-    name: gcc-${{ matrix.version }}
+    name: macos-14 gcc-${{ matrix.version }}
     strategy:
       fail-fast: false
       matrix:
