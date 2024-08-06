@@ -79,7 +79,7 @@
           id: 'configure'
           with:
             mode: configure
-            generator: 'Visual Studio 16 2019'
+            generator: 'Visual Studio 17 2022'
             install_prefix: '../install'
             binary_dir: '../build'
             platform: ${{ matrix.platform }}
