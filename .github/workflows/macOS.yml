@@ -258,11 +258,12 @@ jobs:
       - name: ⚙️ run-cmake (configure)
         uses: cmake-tools/run-cmake@v0-alpha
         id: 'configure'
+        env:
+          CC: $(brew --prefix llvm@${{ matrix.version }})/bin/clang
+          CXX: $(brew --prefix llvm@${{ matrix.version }})/bin/clang++
         with:
           mode: configure
           generator: 'Ninja Multi-Config'
           install_prefix: '../install'
           binary_dir: '../build'
-          variables: |
-            CMAKE_C_COMPILER:STRING=$(brew --prefix llvm@${{ matrix.version }})/bin/clang
-            CMAKE_CXX_COMPILER:STRING=$(brew --prefix llvm@${{ matrix.version }})/bin/clang++
+
