@@ -89,3 +89,47 @@
             binary_dir: '../build'
             platform: ${{ matrix.platform }},version=${{ matrix.sdk }}
             toolset: ${{ matrix.toolset }}
+
+    msys2:
+      runs-on: windows-latest
+      name: ${{ matrix.system }}
+      strategy:
+        fail-fast: false
+        matrix:
+        system: [ msys, mingw64, mingw32, ucrt64 , clang32, clang64, CLANGARM64]
+      defaults:
+        run:
+          shell: msys2 {0}
+
+      steps:
+        - uses: ammaraskar/gcc-problem-matcher@0.3.0
+
+        - name: 📥 Checkout
+          uses: actions/checkout@v4
+
+        - name: ⬇️ Setup CMake
+          uses: lukka/get-cmake@latest
+          with:
+            cmakeVersion: ^3
+            ninjaVersion: ^1
+
+        - name: ⬇️ Setup MSYS2
+          uses: msys2/setup-msys2@v2
+          with:
+            msystem: ${{matrix.system}}
+            path-type: minimal
+            release: true
+            update: true
+            cache: true
+            pacboy: >-
+              cmake:p
+              ninja:p
+
+        - name: ⚙️ run-cmake (configure)
+          uses: cmake-tools/run-cmake@v0-alpha
+          id: 'configure'
+          with:
+            mode: configure
+            generator: 'Ninja Multi-Config'
+            install_prefix: '../install'
+            binary_dir: '../build'
