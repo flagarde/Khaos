@@ -100,8 +100,6 @@
       defaults:
         run:
           shell: msys2 {0}
-      env:
-        PATH: "D:/msys64/usr/bin;$env:PATH"
 
       steps:
         - uses: ammaraskar/gcc-problem-matcher@0.3.0
@@ -125,6 +123,7 @@
             release: true
             update: true
             cache: true
+            location: C:\msys64
             pacboy: >-
               cmake:p
               ninja:p
