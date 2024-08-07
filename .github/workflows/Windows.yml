@@ -118,11 +118,10 @@
           with:
             msystem: ${{matrix.system}}
             path-type: minimal
-            release: true
+            release: false
             update: true
             cache: true
             pacboy: >-
-              toolchain:p
               cmake:p
               ninja:p
 
