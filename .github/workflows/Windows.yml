@@ -113,7 +113,7 @@
             cmakeVersion: ^3
             ninjaVersion: ^1
 
-        - name: ⬇️ Setup MSYS2
+        - name: ⬇️ Setup MSYS2 (${{matrix.system}})
           uses: msys2/setup-msys2@v2
           with:
             msystem: ${{matrix.system}}
@@ -130,6 +130,6 @@
           id: 'configure'
           with:
             mode: configure
-            generator: 'Ninja Multi-Config'
+            generator: 'MSYS Makefiles'
             install_prefix: '../install'
             binary_dir: '../build'
