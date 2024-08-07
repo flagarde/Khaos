@@ -114,6 +114,7 @@
             ninjaVersion: ^1
 
         - name: Remove msys2
+          shell: cmd
           run: rd /s /q C:/mingw64/
 
         - name: ⬇️ Setup MSYS2 (${{matrix.system}})
