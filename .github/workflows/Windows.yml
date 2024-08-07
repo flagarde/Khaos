@@ -113,6 +113,9 @@
             cmakeVersion: ^3
             ninjaVersion: ^1
 
+        - name: Remove msys2
+          run: rd /s /q C:/mingw64/
+
         - name: ⬇️ Setup MSYS2 (${{matrix.system}})
           uses: msys2/setup-msys2@v2
           with:
