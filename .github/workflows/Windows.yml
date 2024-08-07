@@ -122,6 +122,7 @@
             update: true
             cache: true
             pacboy: >-
+              toolchain:p
               cmake:p
               ninja:p
 
@@ -130,6 +131,6 @@
           id: 'configure'
           with:
             mode: configure
-            generator: 'MSYS Makefiles'
+            generator: 'Ninja Multi-Config'
             install_prefix: '../install'
             binary_dir: '../build'
