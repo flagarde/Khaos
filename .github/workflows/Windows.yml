@@ -121,14 +121,10 @@
             release: true
             update: true
             cache: true
-            location: C:\msys64
+            location: C:\mingw64
             pacboy: >-
               cmake:p
               ninja:p
-
-        - name: list en
-          run: set
-          shell: cmd
 
         - name: ⚙️ run-cmake (configure)
           uses: cmake-tools/run-cmake@v0-alpha
