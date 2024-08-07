@@ -113,8 +113,6 @@
             cmakeVersion: ^3
             ninjaVersion: ^1
 
-        - name: Add to path
-          run:
         - name: ⬇️ Setup MSYS2 (${{matrix.system}})
           uses: msys2/setup-msys2@v2
           with:
