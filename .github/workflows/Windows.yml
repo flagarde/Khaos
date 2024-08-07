@@ -20,13 +20,13 @@
   jobs:
     msvc-2019:
       runs-on: windows-2019
-      name: msvc-2019 ${{ matrix.platform }} ${{ matrix.sdk }}
+      name: 'msvc-2019 ${{ matrix.platform }} sdk:${{ matrix.sdk }} toolset:${{ matrix.toolset }}'
       strategy:
         fail-fast: false
         matrix:
           platform: [ win32, x64, ARM, ARM64]
           sdk: [ '10.0.14393.0', '10.0.16299.0', '10.0.17134.0', '10.0.17763.0', '10.0.18362.0', '10.0.19041.0', '10.0.20348.0', '10.0.22000.0', '10.0.22621.0']
-          toolset: ['v140', 'v141', 'v142', 'v143']
+          toolset: ['v140', 'v141', 'v142']
 
       steps:
         - uses: ammaraskar/msvc-problem-matcher@0.3.0
@@ -56,13 +56,13 @@
 
     msvc-2022:
       runs-on: windows-2022
-      name: msvc2022 ${{ matrix.platform }} ${{ matrix.sdk }}
+      name: 'msvc-2022 ${{ matrix.platform }} sdk:${{ matrix.sdk }} toolset:${{ matrix.toolset }}'
       strategy:
         fail-fast: false
         matrix:
           platform: [ win32, x64, ARM, ARM64]
           sdk: ['10.0.17763.0','10.0.19041.0','10.0.20348.0','10.0.22000.0','10.0.22621.0']
-          toolset: ['v140', 'v141', 'v142', 'v143']
+          toolset: ['v142', 'v143']
 
       steps:
         - uses: ammaraskar/msvc-problem-matcher@0.3.0
