@@ -29,7 +29,7 @@
           toolset: ['v140', 'v141', 'v142']
           exclude:
             - toolset: v140
-              version: ARM64
+              platform: ARM64
 
       steps:
         - uses: ammaraskar/msvc-problem-matcher@0.3.0
