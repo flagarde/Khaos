@@ -35,7 +35,7 @@
         - uses: ammaraskar/msvc-problem-matcher@0.3.0
 
         - name: 📥 Checkout
-          uses: actions/checkout@v5
+          uses: actions/checkout@v6
 
         - name: ⬇️ Setup CMake
           uses: lukka/get-cmake@latest
@@ -71,7 +71,7 @@
         - uses: ammaraskar/msvc-problem-matcher@0.3.0
 
         - name: 📥 Checkout
-          uses: actions/checkout@v5
+          uses: actions/checkout@v6
 
         - name: ⬇️ Setup CMake
           uses: lukka/get-cmake@latest
@@ -108,7 +108,7 @@
         - uses: ammaraskar/gcc-problem-matcher@0.3.0
 
         - name: 📥 Checkout
-          uses: actions/checkout@v5
+          uses: actions/checkout@v6
 
         - name: ⬇️ Setup CMake
           uses: lukka/get-cmake@latest
